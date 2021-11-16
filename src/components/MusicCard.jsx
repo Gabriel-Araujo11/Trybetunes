@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -13,13 +13,11 @@ class MusicCard extends React.Component {
     };
   }
 
-  // Função que adiciona a musica como favorita. Req 08 primeira parte;
   addToFavorites = async ({ target }) => {
     const { music } = this.props;
     this.setState({ loading: true });
     if (target.checked) {
       await addSong(music);
-      await getFavoriteSongs();
       this.setState({ favoriteSongChecked: true, loading: false });
     }
   }
@@ -30,7 +28,7 @@ class MusicCard extends React.Component {
     return (
       loading ? <Loading /> : (
         <div>
-          { musics.slice(1).map(({ trackId, trackName, previewUrl }) => ( //  .Slice retorna uma cópia de parte de um array a partir de um subarray criado entre as posições início e fim de um array original. O Array original não é modificado.
+          { musics.map(({ trackId, trackName, previewUrl }) => (
             <div key={ trackId }>
               <span>{ trackName }</span>
               <audio data-testid="audio-component" src={ previewUrl } controls>
