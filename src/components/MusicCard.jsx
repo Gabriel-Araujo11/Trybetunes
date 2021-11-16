@@ -28,7 +28,7 @@ class MusicCard extends React.Component {
     return (
       loading ? <Loading /> : (
         <div>
-          { musics.map(({ trackId, trackName, previewUrl }) => (
+          { musics.slice(1).map(({ trackId, trackName, previewUrl }) => ( //  .Slice retorna uma cópia de parte de um array a partir de um subarray criado entre as posições início e fim de um array original. O Array original não é modificado. https://www.youtube.com/watch?v=CMHR4iYnIPI ; Req 07
             <div key={ trackId }>
               <span>{ trackName }</span>
               <audio data-testid="audio-component" src={ previewUrl } controls>
