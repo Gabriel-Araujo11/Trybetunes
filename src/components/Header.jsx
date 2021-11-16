@@ -34,7 +34,7 @@ class Header extends React.Component {
       // Se loading for true, renderizará o componente Loading, senão, renderizará o estado atual do usuário;
       <header data-testid="header-component">
         { loading ? <Loading /> : user }
-        Header
+        Header Component
         <nav>
           <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
           <Link data-testid="link-to-favorites" to="/favorites">Favoritos</Link>
