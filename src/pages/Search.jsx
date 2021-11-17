@@ -23,7 +23,7 @@ class Search extends React.Component {
     });
   }
 
-  // Requisito feito com base no raciocínio de Fernanda Andrade; Req 06;
+  // Requisito feito com base no racicínio de Fernanda Andrade; Req 06;
   // Função que altera o valor quando feita a requisição/pesquisa do artista;
   // Loading se torna true enquanto procura a requisição feita do artista no método searchAlbumsAPI;
   // Se o tamanho da requisição for diferente de 0, retornará um valor booleano (true ou false). No caso, true pro 'inputAlbum: `Resultado de álbuns de: ${artistName} `' e false pro inputAlbum: 'Nenhum álbum foi encontrado';
@@ -86,7 +86,7 @@ class Search extends React.Component {
                   data-testid={ `link-to-album-${i.collectionId}` }
                   to={ `/album/${i.collectionId}` }
                 >
-                  Album completo
+                  Album
                 </Link>
               </li>
             ))}

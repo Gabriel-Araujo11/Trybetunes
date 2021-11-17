@@ -47,11 +47,21 @@ class Album extends React.Component {
 
   render() {
     const { musics } = this.state;
+    console.log(musics);
     return (
       <div data-testid="page-album">
         <Header />
         {this.getArtistsAlbums()}
-        <MusicCard musics={ musics } />
+        {
+          musics.filter((music) => music.trackId).map((music) => (
+            <MusicCard
+              key={ music.trackId }
+              trackId={ music.trackId }
+              trackName={ music.trackName }
+              previewUrl={ music.previewUrl }
+            />
+          ))
+        }
       </div>
     );
   }

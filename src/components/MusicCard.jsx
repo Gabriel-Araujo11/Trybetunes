@@ -13,41 +13,46 @@ class MusicCard extends React.Component {
     };
   }
 
+  // Função que adiciona a musica como favorita. Req 08 primeira parte;
   addToFavorites = async ({ target }) => {
     const { music } = this.props;
     this.setState({ loading: true });
     if (target.checked) {
       await addSong(music);
       this.setState({ favoriteSongChecked: true, loading: false });
+    } else {
+      this.setState({ favoriteSongChecked: false });
     }
   }
 
   render() {
-    const { musics } = this.props;
+    const { trackId, trackName, previewUrl } = this.props;
     const { loading, favoriteSongChecked } = this.state;
     return (
       loading ? <Loading /> : (
         <div>
-          { musics.slice(1).map(({ trackId, trackName, previewUrl }) => ( //  .Slice retorna uma cópia de parte de um array a partir de um subarray criado entre as posições início e fim de um array original. O Array original não é modificado. https://www.youtube.com/watch?v=CMHR4iYnIPI ; Req 07
-            <div key={ trackId }>
-              <span>{ trackName }</span>
-              <audio data-testid="audio-component" src={ previewUrl } controls>
-                <track kind="captions" />
-                O seu navegador não suporta o elemento
-                <code>audio</code>
-              </audio>
-              <label htmlFor={ trackId }>
-                Favorita
-                <input
-                  type="checkbox"
-                  id={ trackId }
-                  data-testid={ `checkbox-music-${trackId}` }
-                  checked={ favoriteSongChecked }
-                  onChange={ this.addToFavorites }
-                />
-              </label>
-            </div>
-          ))}
+          <h4>{ trackName }</h4>
+          <audio
+            data-testid="audio-component"
+            src={ previewUrl }
+            controls
+          >
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            <code>audio</code>
+          </audio>
+          <label
+            htmlFor={ trackId }
+          >
+            Favorita
+            <input
+              data-testid={ `checkbox-music-${trackId}` }
+              type="checkbox"
+              id={ trackId }
+              checked={ favoriteSongChecked }
+              onChange={ this.addToFavorites }
+            />
+          </label>
         </div>
       )
     );
