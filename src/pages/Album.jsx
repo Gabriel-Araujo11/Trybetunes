@@ -53,7 +53,7 @@ class Album extends React.Component {
         <Header />
         {this.getArtistsAlbums()}
         {
-          musics.filter((music) => music.trackId).map((music) => (
+          musics.filter((music) => music.trackId).map((music) => ( // Req 08;
             <MusicCard
               key={ music.trackId }
               trackId={ music.trackId }
